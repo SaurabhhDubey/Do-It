@@ -59,6 +59,11 @@ const Home = () => {
     </div>
     </div>
 
+    {/**right section */}
+    <div className="">
+      <img src="https://res.cloudinary.com/dyjmgpb5p/image/upload/v1766685416/ChatGPT_Image_Dec_25_2025_11_10_10_PM_mvo40m.png" alt="IMAGE"/>
+    </div>
+
   </div>
    </div>
       
