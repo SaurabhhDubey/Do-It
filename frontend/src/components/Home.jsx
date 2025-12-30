@@ -48,14 +48,12 @@ const Home = () => {
           </h2>
 
           
-          <div className="relative border rounded-xl w-[520px] h-[320px] p-6">
+          <div className="relative border rounded-xl w-130 h-80 p-6">
             <h2 className="absolute top-4 left-8 text-lg font-medium text-gray-500">
               What are you looking for?
             </h2>
-             {/* SERVICES GRID */}
+             
   <div className="mt-12 grid grid-cols-3 gap-6">
-    
-    {/* Service Item */}
     <div className="flex flex-col items-center gap-2 cursor-pointer hover:scale-105 transition">
       <img
         src="https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767024947/saloon_dskirs.jpg"
@@ -76,7 +74,7 @@ const Home = () => {
 
     <div className="flex flex-col items-center gap-2 cursor-pointer hover:scale-105 transition">
       <img
-        src="https://cdn-icons-png.flaticon.com/512/3050/3050525.png"
+        src="https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767062995/Leaning_equipment_a_bucket_of_water_a_mop_detergents_isolated_on_a_white_background_vector_illustration_in_bright_colors___Premium_Vector_xxiz11.jpg"
         alt="Cleaning"
         className="w-12 h-12"
       />
@@ -85,7 +83,7 @@ const Home = () => {
 
     <div className="flex flex-col items-center gap-2 cursor-pointer hover:scale-105 transition">
       <img
-        src="https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767025334/PRESTADOR_DE_SERVICIOS_prcjmj.jpg"
+        src="https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767031431/download_1_tqcfou.jpg"
         alt="Electrician"
         className="w-12 h-12"
       />
@@ -115,13 +113,19 @@ const Home = () => {
         </div>
 
         {/* RIGHT SECTION */}
-        <div className="w-auto h-auto scale-85 rounded-lg overflow-hidden flex items-center justify-center">
+        <div className="w-auto h-auto scale-85  rounded-lg overflow-hidden flex items-center justify-center">
           <img
             className="w-full h-full object-contain"
             src="https://res.cloudinary.com/dyjmgpb5p/image/upload/v1766685416/ChatGPT_Image_Dec_25_2025_11_10_10_PM_mvo40m.png"
             alt="IMAGE"
           />
         </div>
+      </div>
+      {/**cards */}
+      <div className="grid grid-cols-3 gap-6 pl-40">
+        <div className="flex flwx-col  border">card1</div>
+        <div>card2</div>
+        <div>card3</div>
       </div>
     </div>
   );
