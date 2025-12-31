@@ -122,11 +122,103 @@ const Home = () => {
         </div>
       </div>
       {/**cards */}
-      <div className="grid grid-cols-3 gap-6 pl-40">
-        <div className="flex flwx-col  border">card1</div>
-        <div>card2</div>
-        <div>card3</div>
+      <div className="grid grid-cols-3 gap-5 pl-34 pr-20">
+        <div className=" flex  border rounded-xl  overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer">
+          <div className="w-1/2 h-50 ">
+          <img src="https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767066749/%D0%9C%D1%83%D0%B6%D1%87%D0%B8%D0%BD%D0%B0_%D0%B2%D0%B8%D0%B4_%D1%81%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D0%B8_%D1%83%D0%B1%D0%B8%D1%80%D0%B0%D0%B5%D1%82_%D0%B2_%D0%BF%D0%BE%D0%BC%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D0%B8___%D0%91%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B5_%D1%84%D0%BE%D1%82%D0%BE_tuvzoj.jpg" alt="cleaning" 
+          className="w-full h-full object-cover"/>
+        </div>
+        <div className="flex flex-col justify-center p-4 w-1/2 bg-green-500">
+        <h3 className="text-lg text-white font-semibold">Home cleaning </h3>
+         <p className="text-sm text-white">
+        Professional cleaning service for your home
+      </p>
+        </div>
+        </div>
+        <div className=" flex  border rounded-xl  overflow-hidden shadow-sm hover:shadow-lg transition cursor-pointer">
+          <div className="w-1/2 h-50 ">
+          <img src="https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767066757/Bold_Style_Fresh_Vibes_%EF%B8%8F_b32cl6.jpg" alt="saloon" 
+          className="w-full h-full object-cover"/>
+        </div>
+        <div className="flex flex-col justify-center p-4 w-1/2 bg-purple-500">
+        <h3 className="text-lg text-white font-semibold">Salon </h3>
+         <p className="text-sm text-white">
+        Get haircut and mekup for men and women
+      </p>
+        </div>
+        </div>
+        <div className=" flex  border rounded-xl  overflow-hidden shadow-sm hover:shadow-lg transition cursor-pointer">
+          <div className="w-1/2 h-50 ">
+          <img src="https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767066766/Massage_su%C3%A9dois___tout_savoir_sur_le_massage_su%C3%A9dois_-_Elle_is1iqc.jpg" alt="massage" 
+          className="w-full h-full object-cover"/>
+        </div>
+        <div className="flex flex-col justify-center p-4 w-1/2 bg-pink-500">
+        <h3 className="text-lg text-white font-semibold">Massage </h3>
+         <p className="text-sm text-white">
+        massage for men and women
+      </p>
+        </div>
+        </div>
       </div>
+
+      {/*  FOOTER */}
+       <footer className="bg-gray-100 mt-16">
+      
+      <div className="max-w-7xl mx-auto px-8 py-12 grid grid-cols-4 gap-8 text-sm text-gray-700">
+        
+        <div>
+          <h2 className="text-xl font-bold mb-4">Do-IT</h2>
+          <p className="text-gray-600">
+            Quality home services at your doorstep. Trusted professionals,
+            transparent pricing, and quick booking.
+          </p>
+        </div>
+        <div>
+          <h3 className="font-semibold mb-4">Services</h3>
+          <ul className="space-y-2">
+            <li className="hover:underline cursor-pointer">Salon at Home</li>
+            <li className="hover:underline cursor-pointer">Cleaning</li>
+            <li className="hover:underline cursor-pointer">AC Repair</li>
+            <li className="hover:underline cursor-pointer">Electrician</li>
+            <li className="hover:underline cursor-pointer">Plumber</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-semibold mb-4">Company</h3>
+          <ul className="space-y-2">
+            <li className="hover:underline cursor-pointer">About Us</li>
+            <li className="hover:underline cursor-pointer">Careers</li>
+            <li className="hover:underline cursor-pointer">Contact Us</li>
+            <li className="hover:underline cursor-pointer">Blog</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-semibold mb-4">Support</h3>
+          <ul className="space-y-2">
+            <li className="hover:underline cursor-pointer">Help Center</li>
+            <li className="hover:underline cursor-pointer">Terms & Conditions</li>
+            <li className="hover:underline cursor-pointer">Privacy Policy</li>
+            <li className="hover:underline cursor-pointer">FAQs</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div className="border-t">
+        <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center text-sm text-gray-600">
+          
+          <p>© {new Date().getFullYear()} Do-IT. All rights reserved.</p>
+
+          <div className="flex gap-4">
+            <span className="cursor-pointer hover:text-black">Facebook</span>
+            <span className="cursor-pointer hover:text-black">Instagram</span>
+            <span className="cursor-pointer hover:text-black">Twitter</span>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
     </div>
   );
 };
