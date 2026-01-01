@@ -128,7 +128,7 @@ const Home = () => {
           <img src="https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767066749/%D0%9C%D1%83%D0%B6%D1%87%D0%B8%D0%BD%D0%B0_%D0%B2%D0%B8%D0%B4_%D1%81%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D0%B8_%D1%83%D0%B1%D0%B8%D1%80%D0%B0%D0%B5%D1%82_%D0%B2_%D0%BF%D0%BE%D0%BC%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D0%B8___%D0%91%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B5_%D1%84%D0%BE%D1%82%D0%BE_tuvzoj.jpg" alt="cleaning" 
           className="w-full h-full object-cover"/>
         </div>
-        <div className="flex flex-col justify-center p-4 w-1/2 bg-green-500">
+        <div className="flex flex-col justify-center p-4 w-1/2 bg-green-400">
         <h3 className="text-lg text-white font-semibold">Home cleaning </h3>
          <p className="text-sm text-white">
         Professional cleaning service for your home
@@ -140,7 +140,7 @@ const Home = () => {
           <img src="https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767066757/Bold_Style_Fresh_Vibes_%EF%B8%8F_b32cl6.jpg" alt="saloon" 
           className="w-full h-full object-cover"/>
         </div>
-        <div className="flex flex-col justify-center p-4 w-1/2 bg-purple-500">
+        <div className="flex flex-col justify-center p-4 w-1/2 bg-purple-400">
         <h3 className="text-lg text-white font-semibold">Salon </h3>
          <p className="text-sm text-white">
         Get haircut and mekup for men and women
@@ -152,7 +152,7 @@ const Home = () => {
           <img src="https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767066766/Massage_su%C3%A9dois___tout_savoir_sur_le_massage_su%C3%A9dois_-_Elle_is1iqc.jpg" alt="massage" 
           className="w-full h-full object-cover"/>
         </div>
-        <div className="flex flex-col justify-center p-4 w-1/2 bg-pink-500">
+        <div className="flex flex-col justify-center p-4 w-1/2 bg-pink-400">
         <h3 className="text-lg text-white font-semibold">Massage </h3>
          <p className="text-sm text-white">
         massage for men and women
@@ -221,6 +221,6 @@ const Home = () => {
 
     </div>
   );
-};
+}; <div></div>
 
 export default Home;
