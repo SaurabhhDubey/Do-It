@@ -1,4 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
+
+
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div>
       {/* HEADER */}
@@ -30,8 +35,8 @@ const Home = () => {
           </div>
 
           <div className="flex items-center gap-6 text-sm font-medium">
-            <button className="hover:underline">Login</button>
-            <button className="bg-black text-white px-4 py-2 rounded-md hover:opacity-90">
+            <button className="hover:underline" onClick={()=>navigate("Login")}>Login</button>
+            <button className="bg-black text-white px-4 py-2 rounded-md hover:opacity-90" onClick={()=>navigate("register")}>
               Sign Up
             </button>
           </div>
