@@ -59,7 +59,7 @@ const Home = () => {
             </h2>
              
   <div className="mt-12 grid grid-cols-3 gap-6">
-    <div className="flex flex-col items-center gap-2 cursor-pointer hover:scale-105 transition">
+    <div className="flex flex-col items-center gap-2 cursor-pointer hover:scale-105 transition" onClick={()=>navigate("/salon")}>
       <img
         src="https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767024947/saloon_dskirs.jpg"
         alt="Salon"
