@@ -42,7 +42,8 @@ export const registeruser = async (req ,res)=>{
 
 export const login = async (req, res)=>{
   try{
-     if(!username || !email || !password){
+     const { email, password } = req.body;
+     if( !email || !password){
         res.status(400).json({message:"all fields are reqired"});
       }
       const user = await User.findOne({email});
@@ -52,9 +53,9 @@ export const login = async (req, res)=>{
       const isMatch = await bcrypt.compare(password , user.password);
       if (!isMatch) {
     return res.status(400).json({ message: "Invalid password" });
-     const token = jwt.sign({ id: user._id },  process.env.JWT_SECRET,{ expiresIn: "7d" });
+     }
+    const token = jwt.sign({ id: user._id },  process.env.JWT_SECRET,{ expiresIn: "7d" });
   res.status(201).json({message:"login success", token});
-  }
   }
   catch(err){
    res.status(500).json({message:"login error:" , err});
