@@ -1,10 +1,9 @@
-'use client';
+
 import {useNavigate } from "react-router-dom";
-// import { useRouter } from "next/navigation";
+
 
 const Home = () => {
-  // const router = useRouter();
-  // const navigate = (path) => router.push(path);
+
   const navigate = useNavigate();
   const services = [
     {
@@ -17,31 +16,31 @@ const Home = () => {
       id: 2,
       title: "AC Repair",
       icon: "https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767025096/AC_Repair_in_Shepherd_TX_oq5hw7.jpg",
-      path: null,
+      path: "/ac",
     },
     {
       id: 3,
       title: "Cleaning",
       icon: "https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767062995/Leaning_equipment_a_bucket_of_water_a_mop_detergents_isolated_on_a_white_background_vector_illustration_in_bright_colors___Premium_Vector_xxiz11.jpg",
-      path: null,
+      path: "/cleaning",
     },
     {
       id: 4,
       title: "Electrician",
       icon: "https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767031431/download_1_tqcfou.jpg",
-      path: null,
+      path: "/electrician",
     },
     {
       id: 5,
       title: "Plumber",
       icon: "https://cdn-icons-png.flaticon.com/512/609/609803.png",
-      path: null,
+      path: ("/plumber"),
     },
     {
       id: 6,
       title: "Painting",
       icon: "https://cdn-icons-png.flaticon.com/512/1995/1995471.png",
-      path: null,
+      path: ("/painting"),
     },
   ];
 
@@ -51,7 +50,7 @@ const Home = () => {
       title: "Home Cleaning",
       description: "Professional cleaning service for your home",
       image: "https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767066749/%D0%9C%D1%83%D0%B6%D1%87%D0%B8%D0%BD%D0%B0_%D0%B2%D0%B8%D0%B4_%D1%81%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D0%B8_%D1%83%D0%B1%D0%B8%D1%80%D0%B0%D0%B5%D1%82_%D0%B2_%D0%BF%D0%BE%D0%BC%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D0%B8___%D0%91%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B5_%D1%84%D0%BE%D1%82%D0%BE_tuvzoj.jpg",
-      path: null,
+      path: "/cleaning",
       gradient: "from-emerald-400 to-teal-500",
     },
     {
@@ -67,7 +66,7 @@ const Home = () => {
       title: "Massage",
       description: "Relaxing massage for men and women",
       image: "https://res.cloudinary.com/dyjmgpb5p/image/upload/v1767066766/Massage_su%C3%A9dois___tout_savoir_sur_le_massage_su%C3%A9dois_-_Elle_is1iqc.jpg",
-      path: null,
+      path: ("/massage"),
       gradient: "from-violet-400 to-purple-500",
     },
   ];
@@ -459,15 +458,16 @@ const Home = () => {
       </footer>
 
       {/* Custom CSS for animations */}
-      <style jsx>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.6s ease-out forwards;
-        }
-      `}</style>
+      <style>{`
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+`}</style>
+
     </div>
   );
 }; 

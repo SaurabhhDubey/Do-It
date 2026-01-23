@@ -2,6 +2,13 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SalonBooking from './components/Salon.jsx';
+import ACRepair from './components/AcRepair.jsx';
+import Cleaning from './components/Cleaning.jsx';
+import Electrician from './components/Electrician.jsx';
+import Plumber from './components/Plumber.jsx';
+import Painting from './components/Painting.jsx';
+import Massage from './components/Massage.jsx';
+
 
 import "./index.css";
 import Home from './components/Home.jsx'
@@ -14,6 +21,12 @@ const router = createBrowserRouter([
   {path:"/login" , element:<Login/>},
   {path:"/register" , element:<Register/>},
   {path:"/salon" , element:<SalonBooking/>},
+  {path:"/ac" , element:<ACRepair/>},
+  {path:"/cleaning" , element:<Cleaning/>},
+  {path:"/electrician" , element:<Electrician/>},
+  {path:"/plumber" , element:<Plumber/>},
+  {path:"/painting" , element:<Painting/>},
+  {path:"/massage" , element:<Massage/>},
   
 ]);
 
