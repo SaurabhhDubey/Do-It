@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ACRepair = () => {
   const [activeCategory, setActiveCategory] = useState("Repair");
@@ -160,8 +161,8 @@ const ACRepair = () => {
             <div className="flex items-center cursor-pointer">
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-200/50">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                   </svg>
                 </div>
                 <span className="text-2xl font-bold text-slate-800">
@@ -244,9 +245,9 @@ const ACRepair = () => {
               {/* Right Image */}
               <div className="relative h-64 lg:h-auto">
                 <img
-                  src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&auto=format&fit=crop&q=60"
+                  src="https://res.cloudinary.com/dyjmgpb5p/image/upload/v1769278092/Professional_Service_AC_Repair_In_Plano_TX_hp7ldm.jpg"
                   alt="AC Repair Services"
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white/20" />
               </div>

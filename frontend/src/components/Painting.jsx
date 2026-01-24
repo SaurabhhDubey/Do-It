@@ -85,7 +85,7 @@ const Painting = () => {
             <nav className="hidden md:flex items-center gap-8">
               <button onClick={() => navigate("/")} className="text-gray-600 hover:text-orange-600 font-medium transition-colors">Home</button>
               <button className="text-orange-600 font-medium">Painting</button>
-              <button onClick={() => navigate("/salon")} className="text-gray-600 hover:text-orange-600 font-medium transition-colors">Salon</button>
+          
             </nav>
 
             <div className="flex items-center gap-4">

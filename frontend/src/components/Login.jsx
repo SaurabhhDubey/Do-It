@@ -1,11 +1,19 @@
+import { loginUser } from '../api/authAPI';
 
-
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const navigate = useNavigate();
+
+  const [email , setEmail] = useState("");
+  const [password , setPassword] = useState("");
+
+  const handleChange = async (e)=>{e.preventDefault();
+    const result = await loginUser(email , password);
+    
+  }
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-sky-50">
@@ -69,12 +77,12 @@ function Login() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                 </div>
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+                <h2 className="text-2xl font-bold bg-linear-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
                   Login to Your Account
                 </h2>
                 <p className="text-slate-500 mt-2 text-sm">Enter your credentials to continue</p>
               </div>
-
+ 
 
              
               {/* Form Fields */}
@@ -89,7 +97,9 @@ function Login() {
                     </div>
                     <input
                       type="email"
+                      name = "email"
                       placeholder="Enter your email"
+                      onChange={(e)=>setEmail(e.target.value)}
                       className="w-full pl-12 pr-4 py-3 bg-white/80 border border-slate-200/80 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/50 focus:border-sky-400 focus:bg-white transition-all duration-300"
                     />
                   </div>
@@ -105,6 +115,8 @@ function Login() {
                     </div>
                     <input
                       type="password"
+                      name = "password"
+                      onChange={(e)=> setPassword(e.target.value)}
                       placeholder="Enter your password"
                       className="w-full pl-12 pr-4 py-3 bg-white/80 border border-slate-200/80 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/50 focus:border-sky-400 focus:bg-white transition-all duration-300"
                     />
@@ -123,7 +135,8 @@ function Login() {
               </div>
 
               {/* Submit Button */}
-              <button className="w-full mt-6 bg-gradient-to-r from-sky-500 to-cyan-500 text-white py-3.5 rounded-xl font-semibold shadow-lg shadow-sky-200/50 hover:shadow-xl hover:shadow-sky-300/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
+              <button className="w-full mt-6 bg-gradient-to-r from-sky-500 to-cyan-500 text-white py-3.5 rounded-xl font-semibold shadow-lg shadow-sky-200/50 hover:shadow-xl hover:shadow-sky-300/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300" 
+              onClick={handleChange}>
                 Sign In
               </button>
 
