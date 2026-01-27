@@ -443,6 +443,6 @@ const SalonBooking = () => {
       </section>
     </div>
   );
-};
+}; abc
 
 export default SalonBooking;
