@@ -364,7 +364,7 @@ const handleRemoveFromCart = (id) => {
                           <p className="text-rose-600 font-semibold">₹{item.price}</p>
                         </div>
                         <button
-                          onClick={() => handleRemoveFromCart(service.id)}
+                          onClick={() => handleRemoveFromCart(item.id)}
                           className="p-1.5 hover:bg-red-50 rounded-lg transition-colors"
                         >
                           <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">

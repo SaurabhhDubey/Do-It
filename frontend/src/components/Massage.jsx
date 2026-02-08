@@ -1,4 +1,6 @@
-'use client';
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "../redux/slices/cartSlice";
+
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +8,18 @@ import { useNavigate } from "react-router-dom";
 const Massage = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
+  const dispatch = useDispatch();
+const cart = useSelector(state => state.cart.items);
+const totalPrice = useSelector(state => state.cart.totalPrice);
+const handleAddToCart = (service) => {
+  dispatch(addToCart(service));
+};
+
+const handleRemoveFromCart = (id) => {
+  dispatch(removeFromCart(id));
+};
+
 
   const categories = ["All", "Relaxation", "Therapeutic", "Ayurvedic", "Couples", "Facial"];
 
@@ -46,19 +59,19 @@ const Massage = () => {
     ? services 
     : services.filter(service => service.category === selectedCategory);
 
-  const addToCart = (service) => {
-    if (!cart.find(item => item.id === service.id)) {
-      setCart([...cart, service]);
-    }
-  };
+  // const addToCart = (service) => {
+  //   if (!cart.find(item => item.id === service.id)) {
+  //     setCart([...cart, service]);
+  //   }
+  // };
 
-  const removeFromCart = (serviceId) => {
-    setCart(cart.filter(item => item.id !== serviceId));
-  };
+  // const removeFromCart = (serviceId) => {
+  //   setCart(cart.filter(item => item.id !== serviceId));
+  // };
 
   const isInCart = (serviceId) => cart.some(item => item.id === serviceId);
 
-  const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+  // const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50 relative overflow-hidden">
@@ -244,7 +257,7 @@ const Massage = () => {
                     </div>
                     {isInCart(service.id) ? (
                       <button
-                        onClick={() => removeFromCart(service.id)}
+                        onClick={() => handleRemoveFromCart(service.id)}
                         className="flex items-center gap-2 bg-purple-100 text-purple-700 px-5 py-2.5 rounded-full font-medium hover:bg-purple-200 transition-colors"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -254,7 +267,7 @@ const Massage = () => {
                       </button>
                     ) : (
                       <button
-                        onClick={() => addToCart(service)}
+                        onClick={() =>handleAddToCart(service)}
                         className="bg-gradient-to-r from-purple-500 to-violet-600 text-white px-5 py-2.5 rounded-full font-medium hover:shadow-lg hover:shadow-purple-300/50 transition-all duration-300 hover:scale-105"
                       >
                         Add
@@ -286,7 +299,7 @@ const Massage = () => {
                   <div className="flex items-center gap-3">
                     <span className="font-semibold text-gray-900">₹{item.price.toLocaleString()}</span>
                     <button
-                      onClick={() => removeFromCart(item.id)}
+                      onClick={() => handleRemoveFromCart(item.id)}
                       className="text-gray-400 hover:text-red-500 transition-colors"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
