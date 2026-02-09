@@ -1,4 +1,6 @@
-'use client';
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "../redux/slices/cartSlice";
+
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Plumber = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [cart, setCart] = useState([]);
+  
 
   const categories = ["All", "Tap & Mixer", "Leakage", "Drainage", "Installation", "Tank"];
 
@@ -242,19 +244,23 @@ const Plumber = () => {
     ? services 
     : services.filter(service => service.category === selectedCategory);
 
-  const addToCart = (service) => {
-    if (!cart.find(item => item.id === service.id)) {
-      setCart([...cart, service]);
-    }
-  };
 
-  const removeFromCart = (serviceId) => {
-    setCart(cart.filter(item => item.id !== serviceId));
-  };
+  const dispatch = useDispatch();
+const cart = useSelector(state => state.cart.items);
+const totalPrice = useSelector(state => state.cart.totalPrice);
 
-  const isInCart = (serviceId) => cart.some(item => item.id === serviceId);
+const isInCart = (serviceId) => cart.some(item => item.id === serviceId);
 
-  const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
+const handleAddToCart = (service) => {
+  dispatch(addToCart(service));
+};
+
+const handleRemoveFromCart = (id) => {
+  dispatch(removeFromCart(id));
+};
+
+
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
@@ -429,7 +435,12 @@ const Plumber = () => {
                       </div>
                       <p className="text-gray-500 text-sm mb-4">{service.description}</p>
                       <button
-                        onClick={() => isInCart(service.id) ? removeFromCart(service.id) : addToCart(service)}
+                        onClick={() =>
+  isInCart(service.id)
+    ? dispatch(removeFromCart(service.id))
+    : dispatch(addToCart(service))
+}
+
                         className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 ${
                           isInCart(service.id)
                             ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg shadow-green-200/50"
@@ -487,7 +498,7 @@ const Plumber = () => {
                             <div className="flex items-center gap-3">
                               <span className="font-semibold text-blue-600">Rs. {item.price}</span>
                               <button
-                                onClick={() => removeFromCart(item.id)}
+                                onClick={() => dispatch(removeFromCart(item.id))}
                                 className="p-1 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-full transition-colors"
                               >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -501,11 +512,11 @@ const Plumber = () => {
                       <div className="border-t border-blue-100 pt-4 mb-4">
                         <div className="flex justify-between items-center mb-2">
                           <span className="text-gray-600">Subtotal</span>
-                          <span className="font-medium">Rs. {totalAmount}</span>
+                          <span className="font-medium">Rs. {totalPrice}</span>
                         </div>
                         <div className="flex justify-between items-center text-lg font-bold">
                           <span className="text-gray-800">Total</span>
-                          <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Rs. {totalAmount}</span>
+                          <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Rs. {totalPrice}</span>
                         </div>
                       </div>
                       <button className="w-full py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-200/50 transition-all hover:scale-[1.02]">

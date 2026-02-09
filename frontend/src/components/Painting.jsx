@@ -1,4 +1,6 @@
-'use client';
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "../redux/slices/cartSlice";
+
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +8,20 @@ import { useNavigate } from "react-router-dom";
 const Painting = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("Interior");
-  const [cart, setCart] = useState([]);
+
+  const dispatch = useDispatch();
+const cart = useSelector(state => state.cart.items);
+const totalPrice = useSelector(state => state.cart.totalPrice);
+
+const handleAddToCart = (service) => {
+  dispatch(addToCart(service));
+};
+
+const handleRemoveFromCart = (id) => {
+  dispatch(removeFromCart(id));
+};
+
+  
 
   const categories = ["Interior", "Exterior", "Texture", "Waterproofing", "Wood & Metal"];
 
@@ -44,19 +59,11 @@ const Painting = () => {
 
   const filteredServices = services.filter(service => service.category === selectedCategory);
 
-  const addToCart = (service) => {
-    if (!cart.find(item => item.id === service.id)) {
-      setCart([...cart, service]);
-    }
-  };
-
-  const removeFromCart = (serviceId) => {
-    setCart(cart.filter(item => item.id !== serviceId));
-  };
+ 
 
   const isInCart = (serviceId) => cart.some(item => item.id === serviceId);
 
-  const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50 relative overflow-hidden">
@@ -240,7 +247,7 @@ const Painting = () => {
                         </div>
                         {isInCart(service.id) ? (
                           <button
-                            onClick={() => removeFromCart(service.id)}
+                            onClick={() => handleRemoveFromCart(service.id)}
                             className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white px-5 py-2.5 rounded-full font-medium transition-all"
                           >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -250,7 +257,7 @@ const Painting = () => {
                           </button>
                         ) : (
                           <button
-                            onClick={() => addToCart(service)}
+                            onClick={() => handleAddToCart(service)}
                             className="bg-gradient-to-r from-orange-100 to-amber-100 text-orange-600 px-5 py-2.5 rounded-full font-medium hover:from-orange-500 hover:to-amber-500 hover:text-white transition-all hover:shadow-lg hover:shadow-orange-200/50"
                           >
                             Add
@@ -293,7 +300,7 @@ const Painting = () => {
                             <p className="text-orange-600 font-semibold">₹{item.price}</p>
                           </div>
                           <button
-                            onClick={() => removeFromCart(item.id)}
+                            onClick={() => handleRemoveFromCart(item.id)}
                             className="p-1.5 hover:bg-red-100 rounded-full transition-colors"
                           >
                             <svg className="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
