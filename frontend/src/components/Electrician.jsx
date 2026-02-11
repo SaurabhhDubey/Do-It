@@ -1,4 +1,6 @@
-'use client';
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "../redux/slices/cartSlice";
+
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +9,7 @@ const Electrician = () => {
   const navigate = useNavigate();
 
   const [activeCategory, setActiveCategory] = useState("Wiring");
-  const [cart, setCart] = useState([]);
+  
 
   const categories = ["Wiring", "Switches", "Fans", "Lights", "Appliances"];
 
@@ -229,22 +231,17 @@ const Electrician = () => {
   ];
 
   const filteredServices = services.filter(service => service.category === activeCategory);
+const dispatch = useDispatch();
+const cart = useSelector(state => state.cart.items);
+const totalPrice = useSelector(state => state.cart.totalPrice);
 
-  const addToCart = (service) => {
-    if (!cart.find(item => item.id === service.id)) {
-      setCart([...cart, service]);
-    }
-  };
-
-  const removeFromCart = (serviceId) => {
-    setCart(cart.filter(item => item.id !== serviceId));
-  };
+ 
 
   const isInCart = (serviceId) => {
     return cart.some(item => item.id === serviceId);
   };
 
-  const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-amber-50">
@@ -416,7 +413,7 @@ const Electrician = () => {
                         </span>
                         {isInCart(service.id) ? (
                           <button
-                            onClick={() => removeFromCart(service.id)}
+                            onClick={() => dispatch(removeFromCart(service.id))}
                             className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full text-sm font-medium flex items-center gap-1 hover:opacity-90 transition-opacity"
                           >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -426,7 +423,7 @@ const Electrician = () => {
                           </button>
                         ) : (
                           <button
-                            onClick={() => addToCart(service)}
+                            onClick={() => dispatch(addToCart(service))}
                             className="px-4 py-2 bg-amber-50 text-amber-600 rounded-full text-sm font-medium hover:bg-gradient-to-r hover:from-amber-500 hover:to-orange-500 hover:text-white transition-all duration-300"
                           >
                             Add
@@ -471,7 +468,7 @@ const Electrician = () => {
                           <div className="flex items-center gap-3">
                             <span className="font-semibold text-amber-600">₹{item.price}</span>
                             <button
-                              onClick={() => removeFromCart(item.id)}
+                              onClick={() =>dispatch(removeFromCart(item.id))}
                               className="w-6 h-6 bg-red-100 text-red-500 rounded-full flex items-center justify-center hover:bg-red-200 transition-colors"
                             >
                               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

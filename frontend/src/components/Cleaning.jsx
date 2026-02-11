@@ -1,10 +1,12 @@
-'use client';
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "../redux/slices/cartSlice";
+
 
 import { useState } from "react";
 
 const Cleaning = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [cart, setCart] = useState([]);
+  
 
   const categories = ["All", "Home Cleaning", "Deep Cleaning", "Kitchen", "Bathroom", "Sofa & Carpet"];
 
@@ -170,21 +172,16 @@ const Cleaning = () => {
       ? services
       : services.filter((service) => service.category === selectedCategory);
 
-  const addToCart = (service) => {
-    if (!cart.find((item) => item.id === service.id)) {
-      setCart([...cart, service]);
-    }
-  };
+  const dispatch = useDispatch();
+const cart = useSelector(state => state.cart.items);
+const totalPrice = useSelector(state => state.cart.totalPrice);
 
-  const removeFromCart = (serviceId) => {
-    setCart(cart.filter((item) => item.id !== serviceId));
-  };
 
   const isInCart = (serviceId) => {
     return cart.some((item) => item.id === serviceId);
   };
 
-  const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50 relative overflow-hidden">
@@ -374,7 +371,7 @@ const Cleaning = () => {
                         </div>
                         {isInCart(service.id) ? (
                           <button
-                            onClick={() => removeFromCart(service.id)}
+                            onClick={() => dispatch(removeFromCart(service.id))}
                             className="flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full font-medium hover:bg-emerald-200 transition-colors"
                           >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -384,7 +381,7 @@ const Cleaning = () => {
                           </button>
                         ) : (
                           <button
-                            onClick={() => addToCart(service)}
+                            onClick={() =>dispatch(addToCart(service))}
                             className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-full font-medium hover:shadow-lg hover:shadow-emerald-200/50 transition-all duration-300 hover:scale-[1.05]"
                           >
                             Add
@@ -427,7 +424,7 @@ const Cleaning = () => {
                             <p className="text-emerald-600 font-semibold">₹{item.price}</p>
                           </div>
                           <button
-                            onClick={() => removeFromCart(item.id)}
+                            onClick={() =>dispatch(removeFromCart(item.id))}
                             className="p-1 text-gray-400 hover:text-red-500 transition-colors"
                           >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

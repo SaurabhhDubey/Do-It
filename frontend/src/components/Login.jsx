@@ -1,4 +1,6 @@
 import { loginUser } from '../api/authAPI';
+import {useDispatch} from "react-redux";
+import { loginSuccess } from '../redux/slices/authSlice';
 
 import React, { useState } from 'react';
 
@@ -6,14 +8,20 @@ import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [email , setEmail] = useState("");
   const [password , setPassword] = useState("");
 
   const handleChange = async (e)=>{e.preventDefault();
     const result = await loginUser(email , password);
+    if(result?.token){dispatch(loginSuccess(result)); // result?.token , this formate is known as optional chaining means result exists then check token
+      navigate("/");
+    }else{
+      alert(result?.message || "login failed")
+    }
     
-  }
+  };
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-sky-50">
