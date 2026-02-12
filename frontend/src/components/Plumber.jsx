@@ -260,6 +260,15 @@ const handleRemoveFromCart = (id) => {
 };
 
 
+const isLoggedIn = useSelector(state=>state.auth.isLoggedIn);
+
+const handleProceed = ()=>{
+  if(!isLoggedIn){
+    navigate("/login");
+  }else{navigate("/checkout")}
+};
+
+
   
 
   return (
@@ -519,7 +528,7 @@ const handleRemoveFromCart = (id) => {
                           <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Rs. {totalPrice}</span>
                         </div>
                       </div>
-                      <button className="w-full py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-200/50 transition-all hover:scale-[1.02]">
+                      <button onClick={handleProceed} className="w-full py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-200/50 transition-all hover:scale-[1.02]">
                         Proceed to Book
                       </button>
                     </>

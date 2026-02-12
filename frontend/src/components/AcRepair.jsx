@@ -139,6 +139,15 @@ const totalPrice = useSelector(state => state.cart.totalPrice);
     return cart.some((item) => item.id === serviceId);
   };
 
+  const navigate = useNavigate();
+const isLoggedIn = useSelector(state=>state.auth.isLoggedIn);
+
+
+const handleProceed = ()=>{
+  if(!isLoggedIn){
+    navigate("/login");
+  }else{navigate("/checkout")}
+};
   
 
   return (
@@ -400,6 +409,7 @@ const totalPrice = useSelector(state => state.cart.totalPrice);
                 {/* Book Button */}
                 <button
                   disabled={cart.length === 0}
+                  onClick={handleProceed}
                   className={`w-full py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
                     cart.length > 0
                       ? 'bg-gradient-to-r from-cyan-500 to-teal-600 text-white shadow-lg shadow-cyan-200/50 hover:shadow-xl hover:shadow-cyan-300/50 hover:scale-[1.02]'

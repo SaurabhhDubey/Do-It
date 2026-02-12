@@ -236,6 +236,13 @@ const cart = useSelector(state => state.cart.items);
 const totalPrice = useSelector(state => state.cart.totalPrice);
 
  
+const isLoggedIn = useSelector(state=>state.auth.isLoggedIn);
+
+const handleProceed = ()=>{
+  if(!isLoggedIn){
+    navigate("/login");
+  }else{navigate("/checkout")}
+};
 
   const isInCart = (serviceId) => {
     return cart.some(item => item.id === serviceId);
@@ -487,7 +494,7 @@ const totalPrice = useSelector(state => state.cart.totalPrice);
                       </div>
                     </div>
 
-                    <button className="w-full py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-amber-200/50 transition-all duration-300 hover:scale-[1.02]">
+                    <button onClick={handleProceed} className="w-full py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-amber-200/50 transition-all duration-300 hover:scale-[1.02]">
                       Book Now
                     </button>
                   </>

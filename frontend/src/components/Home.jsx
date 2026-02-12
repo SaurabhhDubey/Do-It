@@ -1,8 +1,13 @@
-
+import { useDispatch ,useSelector } from "react-redux";
+import { logout } from "../redux/slices/authSlice";
 import {useNavigate } from "react-router-dom";
 
 
 const Home = () => {
+const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+
+const dispatch = useDispatch();
+const handleLogout=()=>{dispatch(logout()); alert("logout successfully");};
 
   const navigate = useNavigate();
   const services = [
@@ -157,7 +162,13 @@ const Home = () => {
                 onClick={() => navigate("register")}
               >
                 Sign Up
-              </button>
+                </button>
+               {isLoggedIn && ( <button onClick={handleLogout}
+                className="text-slate-600 hover:text-sky-600 font-medium transition-all duration-300 px-4 py-2 rounded-xl hover:bg-sky-50" 
+                
+              >
+                Logout
+              </button>)}
             </div>
           </div>
         </div>

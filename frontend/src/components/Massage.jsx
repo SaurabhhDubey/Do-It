@@ -20,6 +20,13 @@ const handleRemoveFromCart = (id) => {
   dispatch(removeFromCart(id));
 };
 
+const isLoggedIn = useSelector(state=>state.auth.isLoggedIn);
+
+const handleProceed = ()=>{
+  if(!isLoggedIn){
+    navigate("/login");
+  }else{navigate("/checkout")}
+};
 
   const categories = ["All", "Relaxation", "Therapeutic", "Ayurvedic", "Couples", "Facial"];
 
@@ -315,7 +322,7 @@ const handleRemoveFromCart = (id) => {
                 <span className="text-gray-600">Total Amount</span>
                 <span className="text-2xl font-bold text-gray-900">₹{totalPrice.toLocaleString()}</span>
               </div>
-              <button className="w-full bg-gradient-to-r from-purple-500 to-violet-600 text-white py-4 rounded-2xl font-semibold hover:shadow-lg hover:shadow-purple-300/50 transition-all duration-300 hover:scale-[1.02]">
+              <button onClick={handleProceed} className="w-full bg-gradient-to-r from-purple-500 to-violet-600 text-white py-4 rounded-2xl font-semibold hover:shadow-lg hover:shadow-purple-300/50 transition-all duration-300 hover:scale-[1.02]">
                 Book Appointment
               </button>
             </div>

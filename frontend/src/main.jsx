@@ -11,6 +11,7 @@ import Electrician from './components/Electrician.jsx';
 import Plumber from './components/Plumber.jsx';
 import Painting from './components/Painting.jsx';
 import Massage from './components/Massage.jsx';
+import Checkout from './components/Checkout.jsx';
 
 
 import "./index.css";
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
   {path:"/plumber" , element:<Plumber/>},
   {path:"/painting" , element:<Painting/>},
   {path:"/massage" , element:<Massage/>},
+  {path:"/checkout" , element:<Checkout/>},
   
 ]);
 

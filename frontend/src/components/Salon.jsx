@@ -1,4 +1,5 @@
 import { useSelector,useDispatch } from "react-redux";
+import {  useNavigate } from "react-router-dom";
 import { addToCart, removeFromCart } from "../redux/slices/cartSlice";
 
 import { useState } from "react";
@@ -6,6 +7,16 @@ import { useState } from "react";
 const SalonBooking = () => {
   const [activeCategory, setActiveCategory] = useState("Hair");
   // const [cart, setCart] = useState([]);
+const navigate = useNavigate();
+const isLoggedIn = useSelector(state=>state.auth.isLoggedIn);
+
+const handleProceed = ()=>{
+  if(!isLoggedIn){
+    navigate("/login");
+  }else{navigate("/checkout")}
+};
+
+
   const dispatch =useDispatch();
   const cart =useSelector(state=>state.cart.items);
   const totalPrice = useSelector(state=>state.cart.totalPrice);
@@ -385,6 +396,7 @@ const handleRemoveFromCart = (id) => {
                   </div>
 
                   <button
+                  onClick={handleProceed}
                     className={`w-full py-4 rounded-xl font-semibold transition-all duration-300 ${
                       cart.length > 0
                         ? 'bg-gradient-to-r from-rose-500 to-pink-600 text-white shadow-lg shadow-rose-200/50 hover:shadow-xl hover:shadow-rose-300/50 hover:scale-[1.02]'

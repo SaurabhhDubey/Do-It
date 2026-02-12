@@ -21,6 +21,15 @@ const handleRemoveFromCart = (id) => {
   dispatch(removeFromCart(id));
 };
 
+
+const isLoggedIn = useSelector(state=>state.auth.isLoggedIn);
+
+const handleProceed = ()=>{
+  if(!isLoggedIn){
+    navigate("/login");
+  }else{navigate("/checkout")}
+};
+
   
 
   const categories = ["Interior", "Exterior", "Texture", "Waterproofing", "Wood & Metal"];
@@ -318,7 +327,7 @@ const handleRemoveFromCart = (id) => {
                       </div>
                     </div>
 
-                    <button className="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-orange-200/50 transition-all hover:scale-[1.02]">
+                    <button onClick={handleProceed} className="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-orange-200/50 transition-all hover:scale-[1.02]">
                       Proceed to Book
                     </button>
                   </>

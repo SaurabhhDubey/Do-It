@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState={
+const savedAuth =localStorage.getItem("auth");
+
+const initialState= savedAuth?JSON.parse(savedAuth)
+:{
     user:null,
     token:null,
     isLoggedIn :false,
@@ -14,11 +17,13 @@ const authSlice = createSlice({
           state.user=action.payload.user;
           state.token =action.payload.token;
           state.isLoggedIn=true;
+          localStorage.setItem("auth" ,JSON.stringify(state)); // after refresh still login
         },
         logout: (state)=>{
             state.user = null;
             state.token=null;
             state.isLoggedIn =false;
+            localStorage.removeItem("auth"); // logout
         },
     }
 });

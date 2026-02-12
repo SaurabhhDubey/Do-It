@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, removeFromCart } from "../redux/slices/cartSlice";
+import {  useNavigate } from "react-router-dom";
 
 
 import { useState } from "react";
@@ -175,6 +176,15 @@ const Cleaning = () => {
   const dispatch = useDispatch();
 const cart = useSelector(state => state.cart.items);
 const totalPrice = useSelector(state => state.cart.totalPrice);
+
+const navigate = useNavigate();
+const isLoggedIn = useSelector(state=>state.auth.isLoggedIn);
+
+const handleProceed = ()=>{
+  if(!isLoggedIn){
+    navigate("/login");
+  }else{navigate("/checkout")}
+};
 
 
   const isInCart = (serviceId) => {
@@ -452,7 +462,7 @@ const totalPrice = useSelector(state => state.cart.totalPrice);
                       </div>
                     </div>
 
-                    <button className="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-emerald-200/50 transition-all duration-300 hover:scale-[1.02]">
+                    <button onClick={handleProceed} className="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-emerald-200/50 transition-all duration-300 hover:scale-[1.02]">
                       Proceed to Book
                     </button>
                   </>
