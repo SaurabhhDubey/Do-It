@@ -13,10 +13,10 @@ const vendorSchema = new mongoose.Schema({
     },
     serviceOffered:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref:"service"
+        ref:"Service"
     }],
-    experienceaYears:{
-        type:number,
+    experienceYears:{
+        type:Number,
         default:1,
     },
     documentVerified:{
@@ -45,9 +45,11 @@ const vendorSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-
-  createdAt: {
-    type: Date,
-    default: Date.now,
+},
+  {
+    timestamps: true, // adds createdAt & updatedAt automatically
   }
-    });        
+    );        
+
+    const Vendor = mongoose.model("Vendor" , vendorSchema);
+    export default Vendor;
