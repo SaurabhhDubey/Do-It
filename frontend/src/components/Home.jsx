@@ -163,6 +163,12 @@ const handleLogout=()=>{dispatch(logout()); alert("logout successfully");};
               >
                 Sign Up
                 </button>
+                <button 
+                className="bg-gradient-to-r from-sky-500 to-indigo-500 text-white px-6 py-2.5 rounded-xl font-medium hover:from-sky-600 hover:to-indigo-600 transition-all duration-300 shadow-lg shadow-sky-200/50 hover:shadow-sky-300/50 hover:scale-105" 
+                onClick={() => navigate("vendorRegister")}
+              >
+                Vendor
+                </button>
                {isLoggedIn && ( <button onClick={handleLogout}
                 className="text-slate-600 hover:text-sky-600 font-medium transition-all duration-300 px-4 py-2 rounded-xl hover:bg-sky-50" 
                 
