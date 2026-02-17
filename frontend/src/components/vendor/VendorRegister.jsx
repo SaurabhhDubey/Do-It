@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { vendorRegister } from '../../api/vendorAPI';
+import { useSelector } from "react-redux";
+
+
 
 function VendorRegister() {
   const navigate = useNavigate();
@@ -10,10 +14,6 @@ function VendorRegister() {
     address: '',
     city: '',
     availability: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -30,17 +30,38 @@ function VendorRegister() {
   ];
 
   const cityOptions = [
-    'New York',
-    'Los Angeles',
-    'Chicago',
-    'Houston',
-    'Phoenix',
-    'Philadelphia',
-    'San Antonio',
-    'San Diego',
-    'Dallas',
-    'San Jose',
-  ];
+  "Delhi",
+  "Mumbai",
+  "Bengaluru",
+  "Hyderabad",
+  "Ahmedabad",
+  "Chennai",
+  "Kolkata",
+  "Pune",
+  "Jaipur",
+  "Lucknow",
+  "Kanpur",
+  "Nagpur",
+  "Indore",
+  "Bhopal",
+  "Patna",
+  "Surat",
+  "Chandigarh",
+  "Visakhapatnam",
+  "Agra",
+  "Varanasi",
+  "Ranchi",
+  "Raipur",
+  "Noida",
+  "Gurugram",
+  "Ghaziabad",
+  "Faridabad",
+  "Amritsar",
+  "Jodhpur",
+  "Udaipur",
+  "Dehradun"
+];
+
 
   const availabilityOptions = [
     'Full Time',
@@ -78,31 +99,11 @@ function VendorRegister() {
       newErrors.availability = 'Availability is required';
     }
 
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
-    }
-
-    if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone number is required';
-    } else if (!/^\d{10}$/.test(formData.phone.replace(/\D/g, ''))) {
-      newErrors.phone = 'Please enter a valid phone number';
-    }
-
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
-    } else if (formData.password.length < 8) {
-      newErrors.password = 'Password must be at least 8 characters';
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
-    }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+
+  const token = useSelector((state)=> state.auth.token);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -118,15 +119,31 @@ function VendorRegister() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    if (validateForm()) {
-      setSubmitted(true);
-      console.log('Vendor Registration Data:', formData);
-      setTimeout(() => {
-        navigate('/');
-      }, 2000);
+   if (!token){
+    alert("please login first");
+    navigate("/");
+    return;
+   }
+   if(validateForm()){
+    try{
+        const data = await vendorRegister(formData , token);
+        if (data.success) {
+        setSubmitted(true);
+
+        setTimeout(() => {
+          navigate("/vendorPanel");
+        }, 2000);
+      } else {
+        alert(data.message);
+      }
     }
+    catch(error){
+        alert("somthing went wrong");
+        console.log("error");
+    }
+   }
   };
 
   return (

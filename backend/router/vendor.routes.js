@@ -4,6 +4,6 @@ import authMiddleware from "../middleware/auth.middleware.js";
 
 const VendorRouter = express.Router();
 
-VendorRouter.post("/register", authMiddleware , registerVendor);
+VendorRouter.post("/", authMiddleware , registerVendor);
 
 export default VendorRouter;

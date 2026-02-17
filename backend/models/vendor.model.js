@@ -11,10 +11,10 @@ const vendorSchema = new mongoose.Schema({
         type: String,
         required:true,
     },
-    serviceOffered:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"Service"
-    }],
+    serviceOffered: {
+  type: String,
+  required: true,
+},
     experienceYears:{
         type:Number,
         default:1,
