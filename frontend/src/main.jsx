@@ -14,7 +14,7 @@ import Massage from './components/Massage.jsx';
 import Checkout from './components/Checkout.jsx';
 import VendorRegister from './components/vendor/VendorRegister.jsx';
 import VendorPanel from './components/vendor/VendorPanel.jsx';
-
+import AdminDashboard from './components/admin/AdminDashboard.jsx';
 
 import "./index.css";
 import Home from './components/Home.jsx'
@@ -36,6 +36,7 @@ const router = createBrowserRouter([
   {path:"/checkout" , element:<Checkout/>},
   {path:"/vendorRegister" , element:<VendorRegister/>},
   {path:"/vendorPanel" , element:<VendorPanel/>},
+  {path:"/admindashboard" , element:<AdminDashboard/>},
   
 ]);
 

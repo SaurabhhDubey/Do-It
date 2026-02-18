@@ -4,12 +4,12 @@ import dotenv from "dotenv";
 import router from "./router/auth.router.js";
 import cors from 'cors'
 import VendorRouter from "./router/vendor.routes.js";
+import adminRouter from "./router/admin.routes.js";
 
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(cors(
-));
+app.use(cors());
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
 
@@ -23,6 +23,7 @@ app.get("/" ,  (req , res)=>{
 
 app.use("/api/users" , router);
 app.use("/api/vendors" , VendorRouter);
+app.use("/api/admin" , adminRouter);
 
 app.listen(PORT , ()=>{
     console.log(`listening on ${PORT}`);
