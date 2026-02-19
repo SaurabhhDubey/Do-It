@@ -1,12 +1,15 @@
 import { useSelector } from "react-redux";
 import { Navigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchDashboardStats } from "../../api/adminAPI";
+import { fetchDashboardStats , fetchAllUsers } from "../../api/adminAPI";
+
 
 
 
 export default function AdminDashboard() {
   const { user,token, isLoggedIn } = useSelector((state) => state.auth);
+  
+
 
   const [stats, setStats] = useState([]);
 
@@ -14,6 +17,7 @@ export default function AdminDashboard() {
   // 🔐 Protect admin route
   if (!isLoggedIn) return <Navigate to="/login" />;
   if (user?.role !== "admin") return <Navigate to="/" />;
+  
 
   useEffect(() => {
   const loadStats = async () => {
@@ -58,7 +62,7 @@ export default function AdminDashboard() {
       <div className="flex-1 p-6">
         {/* Header */}
         <h1 className="text-3xl font-bold text-slate-800 mb-6">
-          Welcome, {user.name} 👋
+          Welcome, {user.username} 
         </h1>
 
         {/* ================= DASHBOARD STATS ================= */}
