@@ -33,6 +33,8 @@ export default function AdminDashboard() {
   loadStats();
 }, [token]);
 
+const [activeTab , setActiveTab] = useState("dashboard");
+
   return (
     <div className="flex min-h-screen bg-slate-100">
       {/* ================= SIDEBAR ================= */}
@@ -40,21 +42,21 @@ export default function AdminDashboard() {
         <h2 className="text-2xl font-bold text-sky-600 mb-8">Admin Panel</h2>
 
         <nav className="flex flex-col gap-3">
-          <Link className="px-4 py-2 rounded-xl hover:bg-sky-50 font-medium" to="/admin">
+          <button onClick={()=>setActiveTab("dashboard")} className="px-4 py-2 rounded-xl hover:bg-sky-50 font-medium" to="/admin">
             Dashboard
-          </Link>
+          </button>
 
-          <Link className="px-4 py-2 rounded-xl hover:bg-sky-50 font-medium" to="/admin/users">
+          <button onClick={()=>setActiveTab("users")} className="px-4 py-2 rounded-xl hover:bg-sky-50 font-medium" to="/admin/users">
             Users
-          </Link>
+          </button>
 
-          <Link className="px-4 py-2 rounded-xl hover:bg-sky-50 font-medium" to="/admin/vendors">
+          <button onClick={()=>setActiveTab("vendors")} className="px-4 py-2 rounded-xl hover:bg-sky-50 font-medium" to="/admin/vendors">
             Vendors
-          </Link>
+          </button>
 
-          <Link className="px-4 py-2 rounded-xl hover:bg-sky-50 font-medium" to="/admin/bookings">
+          <button onClick={()=>setActiveTab("bookings")} className="px-4 py-2 rounded-xl hover:bg-sky-50 font-medium" to="/admin/bookings">
             Bookings
-          </Link>
+          </button>
         </nav>
       </div>
 
@@ -66,7 +68,7 @@ export default function AdminDashboard() {
         </h1>
 
         {/* ================= DASHBOARD STATS ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {activeTab ==="dashboard" && ( <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((item, index) => (
             <div
               key={index}
@@ -78,43 +80,21 @@ export default function AdminDashboard() {
               </p>
             </div>
           ))}
-        </div>
+        </div>)}
 
-        {/* ================= RECENT ACTIVITY TABLE ================= */}
-        <div className="mt-8 bg-white rounded-2xl shadow p-6">
-          <h2 className="text-xl font-semibold mb-4">Recent Users</h2>
+         {activeTab === "users" && (
+          <h2 className="text-2xl font-bold">All Users Section</h2>
+        )}
 
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="border-b">
-                <th className="py-2">Name</th>
-                <th>Email</th>
-                <th>Role</th>
-              </tr>
-            </thead>
+        {activeTab === "vendors" && (
+          <h2 className="text-2xl font-bold">All Vendors Section</h2>
+        )}
 
-            <tbody>
-              {/* Dummy rows → later from backend */}
-              <tr className="border-b">
-                <td className="py-2">Rahul Sharma</td>
-                <td>rahul@mail.com</td>
-                <td>User</td>
-              </tr>
+        {activeTab === "bookings" && (
+          <h2 className="text-2xl font-bold">All Bookings Section</h2>
+        )}
 
-              <tr className="border-b">
-                <td className="py-2">Amit Verma</td>
-                <td>amit@mail.com</td>
-                <td>Vendor</td>
-              </tr>
-
-              <tr>
-                <td className="py-2">Admin</td>
-                <td>admin@mail.com</td>
-                <td>Admin</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+       
       </div>
     </div>
   );
