@@ -32,3 +32,24 @@ export const registerVendor = async (req , res)=>{
     }
     
 };
+
+
+export const getVendorStatus = async (req, res) => {
+  try {
+    const vendor = await Vendor.findOne({ userId: req.user.id });
+
+    if (!vendor) {
+      return res.status(200).json({
+        exists: false,
+      });
+    }
+const token = jwt.sign({ id: user._id },  process.env.JWT_SECRET,{ expiresIn: "7d" });
+    return res.status(200).json({
+      exists: true,
+      isApproved: vendor.isApproved, token,
+    });
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

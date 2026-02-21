@@ -20,7 +20,7 @@ const VendorPanel = () => {
   });
 
 
-  const BusinessName = s;
+  
 
   const [bookings, setBookings] = useState([
     {

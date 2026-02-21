@@ -1,6 +1,7 @@
 import { useDispatch ,useSelector } from "react-redux";
 import { logout } from "../redux/slices/authSlice";
 import {useNavigate } from "react-router-dom";
+import { fetchAllVendors } from "../api/adminAPI";
 
 
 const Home = () => {
@@ -11,6 +12,28 @@ const handleLogout=()=>{dispatch(logout()); alert("logout successfully");};
 
  const { user } = useSelector((state) => state.auth);
 const admin = user?.role === "admin";
+
+
+const handleVendorClick = async () => {
+  
+
+ try {
+    const data = await fetchAllVendors(user.token);
+
+    if (!data.exists) {
+      navigate("/vendorRegister");
+    } else if (data.status === "approved") {
+      navigate("/vendorPanel");
+    } else {
+      alert("Pending approval");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+
 
   const navigate = useNavigate();
   const services = [
@@ -168,10 +191,16 @@ const admin = user?.role === "admin";
                 </button>
                 <button 
                 className="bg-gradient-to-r from-sky-500 to-indigo-500 text-white px-6 py-2.5 rounded-xl font-medium hover:from-sky-600 hover:to-indigo-600 transition-all duration-300 shadow-lg shadow-sky-200/50 hover:shadow-sky-300/50 hover:scale-105" 
-                onClick={() => navigate("vendorRegister")}
+                onClick={() => handleVendorClick()}
               >
                 Vendor
                 </button>
+                {/* {vendor && (<button 
+                className="bg-gradient-to-r from-sky-500 to-indigo-500 text-white px-6 py-2.5 rounded-xl font-medium hover:from-sky-600 hover:to-indigo-600 transition-all duration-300 shadow-lg shadow-sky-200/50 hover:shadow-sky-300/50 hover:scale-105" 
+                onClick={() => navigate("vendorPanel")}
+              >
+                Vendor Panel
+                </button>)} */}
                { admin &&(<button 
                 className="bg-gradient-to-r from-sky-500 to-indigo-500 text-white px-6 py-2.5 rounded-xl font-medium hover:from-sky-600 hover:to-indigo-600 transition-all duration-300 shadow-lg shadow-sky-200/50 hover:shadow-sky-300/50 hover:scale-105" 
                 onClick={() => navigate("admindashboard")}

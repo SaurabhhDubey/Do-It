@@ -7,3 +7,22 @@ export const vendorRegister = async (formData, token)=>{
 const data = await response.json();
 return data;
 };
+
+export const fetchVendorStatus = async (token) => {
+  try {
+    const res = await fetch(`${BASE_URL}/api/vendors/status`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch vendor status");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("Vendor status error:", error);
+    throw error;
+  }
+};

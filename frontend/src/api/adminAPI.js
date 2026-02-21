@@ -19,3 +19,25 @@ export const fetchAllUsers = async (token) => {
 
   return res.json();
 };
+
+export const fetchAllVendors = async (token) => {
+  const res = await fetch(`${BASE_URL}/api/vendors`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return res.json();
+};
+
+export const approveVendor = async (vendorId, token) => {
+  const res = await fetch(
+    `${BASE_URL}/api/admin/vendors/${vendorId}/approve`,
+    {
+      method: "PUT",
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+  return res.json();
+};
+
