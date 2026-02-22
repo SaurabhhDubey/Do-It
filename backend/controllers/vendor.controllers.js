@@ -2,7 +2,7 @@ import Vendor from "../models/vendor.model.js";
 
 export const registerVendor = async (req , res)=>{
     try{
-        const userId = req.user.id; // from auth middleware
+        const userId = req.user._id; // from auth middleware
          const {
       businessName,
       serviceOffered,
@@ -36,20 +36,23 @@ export const registerVendor = async (req , res)=>{
 
 export const getVendorStatus = async (req, res) => {
   try {
-    const vendor = await Vendor.findOne({ userId: req.user.id });
+    console.log("REQ.USER ID:", req.user._id);
+
+    const vendor = await Vendor.findOne({ userId: req.user._id });
+
+    console.log("FOUND VENDOR:", vendor);
 
     if (!vendor) {
-      return res.status(200).json({
-        exists: false,
-      });
+      return res.status(200).json({ exists: false });
     }
-const token = jwt.sign({ id: user._id },  process.env.JWT_SECRET,{ expiresIn: "7d" });
+
     return res.status(200).json({
       exists: true,
-      isApproved: vendor.isApproved, token,
+      isApproved: vendor.isApproved,
     });
 
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };

@@ -11,6 +11,7 @@ return data;
 export const fetchVendorStatus = async (token) => {
   try {
     const res = await fetch(`${BASE_URL}/api/vendors/status`, {
+        method:"GET",
       headers: {
         Authorization: `Bearer ${token}`,
       },

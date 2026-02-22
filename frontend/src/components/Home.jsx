@@ -1,7 +1,7 @@
 import { useDispatch ,useSelector } from "react-redux";
 import { logout } from "../redux/slices/authSlice";
 import {useNavigate } from "react-router-dom";
-import { fetchAllVendors } from "../api/adminAPI";
+import { fetchVendorStatus } from "../api/vendorAPI";
 
 
 const Home = () => {
@@ -10,7 +10,7 @@ const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 const dispatch = useDispatch();
 const handleLogout=()=>{dispatch(logout()); alert("logout successfully");};
 
- const { user } = useSelector((state) => state.auth);
+ const { user , token } = useSelector((state) => state.auth);
 const admin = user?.role === "admin";
 
 
@@ -18,11 +18,11 @@ const handleVendorClick = async () => {
   
 
  try {
-    const data = await fetchAllVendors(user.token);
+    const data = await fetchVendorStatus(token);
 
     if (!data.exists) {
       navigate("/vendorRegister");
-    } else if (data.status === "approved") {
+    } else if (data.isApproved) {
       navigate("/vendorPanel");
     } else {
       alert("Pending approval");
