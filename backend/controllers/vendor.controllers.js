@@ -49,6 +49,10 @@ export const getVendorStatus = async (req, res) => {
     return res.status(200).json({
       exists: true,
       isApproved: vendor.isApproved, 
+      businessName : vendor.businessName,
+      experienceYears : vendor.experienceYears,
+      serviceOffered: vendor.serviceOffered,
+      address : vendor.address,
     });
 
   } catch (error) {

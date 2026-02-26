@@ -5,7 +5,7 @@ const savedAuth =localStorage.getItem("auth");
 const initialState= savedAuth?JSON.parse(savedAuth)
 :{
     user:null,
-    token:null,
+    token:null, 
     isLoggedIn :false,
 };
 

@@ -1,12 +1,34 @@
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { setVendorStatus } from '../../redux/slices/vendorSlice.js';
+import {fetchVendorStatus} from '../../api/vendorAPI.js';
+ 
+
 
 const VendorPanel = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(true);
+
+const dispatch = useDispatch();
+const token = useSelector((state)=>state.auth.token);
+const vendor = useSelector((state)=> state.vendor);
+
+useEffect(() => {
+  if (!token) return;
+
+  const loadVendor = async () => {
+    const data = await fetchVendorStatus(token);
+    dispatch(setVendorStatus(data));
+  };
+
+  loadVendor();
+}, [token, dispatch]);
+ console.log("VENDOR FROM REDUX:", vendor);
+
   const [vendorData, setVendorData] = useState({
-    businessName: 'Premium AC Services',
+    businessName: vendor.businessName,
     serviceOffered: 'AC Repair & Maintenance',
     experienceYears: 8,
     address: '123 Main Street',
@@ -18,9 +40,14 @@ const VendorPanel = () => {
     completedServices: 156,
     totalEarnings: '$12,450'
   });
+ 
 
 
-  
+
+
+
+
+   
 
   const [bookings, setBookings] = useState([
     {
@@ -157,10 +184,10 @@ const VendorPanel = () => {
               <div className="flex items-center gap-4">
                 <div className="hidden md:flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-indigo-100/50 to-purple-100/50 rounded-full border border-indigo-200/30">
                   <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
-                    {vendorData.businessName.charAt(0)}
+                    {vendor.businessName?.[0]?.toUpperCase() || "V"}
                   </div>
                   <div className="hidden sm:block">
-                    <p className="text-sm font-semibold text-gray-900">{vendorData.businessName}</p>
+                    <p className="text-sm font-semibold text-gray-900">{vendor.businessName}</p>
                     <p className="text-xs text-gray-600">Vendor</p>
                   </div>
                 </div>
@@ -271,7 +298,7 @@ const VendorPanel = () => {
 
                       <div className="grid md:grid-cols-2 gap-6">
                         {[
-                          { label: 'Business Name', value: vendorData.businessName },
+                          { label: 'Business Name', value: vendor.businessName },
                           { label: 'Email', value: vendorData.email },
                           { label: 'Phone', value: vendorData.phone },
                           { label: 'Service Offered', value: vendorData.serviceOffered },
