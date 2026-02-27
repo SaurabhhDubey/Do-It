@@ -301,10 +301,10 @@ useEffect(() => {
                           { label: 'Business Name', value: vendor.businessName },
                           { label: 'Email', value: vendorData.email },
                           { label: 'Phone', value: vendorData.phone },
-                          { label: 'Service Offered', value: vendorData.serviceOffered },
-                          { label: 'Experience Years', value: `${vendorData.experienceYears} years` },
-                          { label: 'City', value: vendorData.city },
-                          { label: 'Address', value: vendorData.address },
+                          { label: 'Service Offered', value: vendor.serviceOffered },
+                          { label: 'Experience Years', value: `${vendor.experienceYears} years` },
+                          { label: 'City', value: vendor.address },
+                          { label: 'Address', value: vendor.address },
                           { label: 'Availability', value: vendorData.availability }
                         ].map((field, idx) => (
                           <div key={idx} className="p-4 bg-gradient-to-br from-slate-50 to-indigo-50 rounded-xl border border-white/20">
