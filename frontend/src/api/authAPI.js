@@ -1,4 +1,4 @@
-const BASE_URL = "https://do-it-9qoa.onrender.com"
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 console.log(BASE_URL);
 

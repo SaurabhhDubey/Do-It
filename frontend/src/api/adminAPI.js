@@ -1,4 +1,4 @@
-const BASE_URL = "https://do-it-9qoa.onrender.com";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const fetchDashboardStats = async (token) => {
   const res = await fetch(`${BASE_URL}/api/admin/dashboard`, {

@@ -1,4 +1,4 @@
-const BASE_URL = "https://do-it-9qoa.onrender.com"
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const vendorRegister = async (formData, token)=>{
     const response = await fetch (`${BASE_URL}/api/vendors` , {method:'post' , headers:{'Content-Type' : 'application/json', Authorization: `Bearer ${token}`,},
