@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000"
+const BASE_URL = "https://do-it-9qoa.onrender.com"
 
 console.log(BASE_URL);
 

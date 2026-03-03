@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://do-it-9qoa.onrender.com";
 
 export const fetchDashboardStats = async (token) => {
   const res = await fetch(`${BASE_URL}/api/admin/dashboard`, {
